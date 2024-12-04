@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <div class="Main-content">
+        <label for="" id="texto-email">Email</label>
+        <input type="email" id="email">
+
+        <label for="" id="texto-senha">Senha</label>
+        <input type="password" id="Senha">
+
+        <button class="botao" onclick="login()">Entrar</button>
+
+        <script>
+           async function login(){
+                const email = document.getElementById('email').value;
+                const Senha = document.getElementById('Senha').value;
+                const obj = {
+                    email,
+                    Senha
+                }
+                const respostaDaAPI = await fetch('http://localhost:3333/login', { 
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(obj)
+                    })
+
+
+                    const respostaEmJSON = await respostaDaAPI.json();
+
+                console.log(respostaEmJSON);
+            }
+        </script>
+    </div>
+</body>
+</html>
